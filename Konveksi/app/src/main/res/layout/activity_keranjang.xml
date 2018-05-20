@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.citra.konveksi.keranjang">
+
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativesatu">
+
+
+        <TextView
+            android:id="@+id/txtlabelharga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total harga"
+            android:paddingBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/txttotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txtlabelharga"
+            android:paddingLeft="50dp"
+            android:text="Rp." />
+
+        <Button
+            android:id="@+id/btnnext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtlabelharga"
+            android:paddingTop="15dp"
+            android:gravity="center"
+            android:text="Lanjut ke Pembayaran" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativesatu"
+        android:paddingTop="15dp"
+        android:id="@+id/relativedua"
+        android:paddingBottom="15dp"
+        >
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nama produk"
+            android:layout_toRightOf="@id/image1"
+            android:id="@+id/txtsatu"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="harga"
+            android:layout_toRightOf="@id/image1"
+            android:layout_below="@id/txtsatu"
+            android:id="@+id/txtdua"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ukuran"
+            android:layout_toRightOf="@id/image1"
+            android:layout_below="@id/txtdua"
+            android:id="@+id/txttiga"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jumlah"
+            android:layout_toRightOf="@id/image1"
+            android:layout_below="@id/txttiga"
+            android:id="@+id/txtempat"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="total harga"
+            android:layout_toRightOf="@id/image1"
+            android:layout_below="@id/txtempat"
+            android:id="@+id/txtlima"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgexit"
+            android:src="@mipmap/exit"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativedua"
+        android:id="@+id/relativetiga"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        >
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nama produk"
+            android:layout_toRightOf="@id/image2"
+            android:id="@+id/txtsatu2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="harga"
+            android:layout_toRightOf="@id/image2"
+            android:layout_below="@id/txtsatu2"
+            android:id="@+id/txtdua2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ukuran"
+            android:layout_toRightOf="@id/image2"
+            android:layout_below="@id/txtdua2"
+            android:id="@+id/txttiga2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jumlah"
+            android:layout_toRightOf="@id/image2"
+            android:layout_below="@id/txttiga2"
+            android:id="@+id/txtempat2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="total harga"
+            android:layout_toRightOf="@id/image2"
+            android:layout_below="@id/txtempat2"
+            android:id="@+id/txtlima2"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgexit2"
+            android:src="@mipmap/exit"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
