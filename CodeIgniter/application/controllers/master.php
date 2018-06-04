@@ -14,12 +14,8 @@ class Master extends CI_Controller{
         $data=array(
             'title'=>'Master Data',
             'active_master'=>'active',
-            'kd_barang'=>$this->model_app->getKodeBarang(),
-            'kd_pelanggan'=>$this->model_app->getKodePelanggan(),
-            'kd_pegawai'=>$this->model_app->getKodePegawai(),
-            'data_barang'=>$this->model_app->getAllData('barang_konveksi'),
             'data_pelanggan'=>$this->model_app->getAllData('tabel_pelanggan'),
-          //  'data_contact'=>$this->model_app->getAllData('tbl_contact'),
+            'data_contact'=>$this->model_app->getAllData('tbl_contact'),
             'data_pegawai'=>$this->model_app->getAllData('admin'),
         );
         $this->load->view('element/v_header',$data);
@@ -29,42 +25,22 @@ class Master extends CI_Controller{
 
 //
 //    ===================== INSERT =====================
-    
-    function tambah_pelanggan(){
-        $data=array(
-            'kd_pelanggan'=> $this->input->post('kd_pelanggan'),
-            'nm_pelanggan'=>$this->input->post('nm_pelanggan'),
-            'alamat'=>$this->input->post('alamat'),
-            'email'=>$this->input->post('email'),
-        );
-        $this->model_app->insertData('tbl_pelanggan',$data);
-        redirect("master");
-    }
+
     function tambah_pegawai(){
         $data=array(
-            'kd_pegawai'=> $this->input->post('kd_pegawai'),
+            'id_admin'=> $this->input->post(''),
             'username'=>$this->input->post('username'),
-            'password'=>md5($this->input->post('password')),
-            'nama'=> $this->input->post('nama'),
+            'password'=>($this->input->post('password')),
+            'no_telp'=> $this->input->post('nama'),
             'level'=>$this->input->post('level'),
         );
-        $this->model_app->insertData('tbl_pegawai',$data);
+        $this->model_app->insertData('admin',$data);
         redirect("master");
     }
 
 
 //    ======================== EDIT =======================
     
-    function edit_pelanggan(){
-        $id['kd_pelanggan'] = $this->input->post('kd_pelanggan');
-        $data=array(
-            'nm_pelanggan'=>$this->input->post('nm_pelanggan'),
-            'alamat'=>$this->input->post('alamat'),
-            'email'=>$this->input->post('email'),
-        );
-        $this->model_app->updateData('tbl_pelanggan',$data,$id);
-        redirect("master");
-    }
     function edit_contact(){
         $id['id'] = 1;
         $data=array(
@@ -80,27 +56,27 @@ class Master extends CI_Controller{
         redirect("master");
     }
     function edit_pegawai(){
-        $id['kd_pegawai'] = $this->input->post('kd_pegawai');
+        $id['id_admin'] = $this->input->post('kd_pegawai');
         $data=array(
             'username'=>$this->input->post('username'),
-            'password'=>md5($this->input->post('password')),
-            'nama'=> $this->input->post('nama'),
+            'password'=>($this->input->post('password')),
+            'no_telp'=> $this->input->post('nama'),
             'level'=>$this->input->post('level'),
         );
-        $this->model_app->updateData('tbl_pegawai',$data,$id);
+        $this->model_app->updateData('admin',$data,$id);
         redirect("master");
     }
 
 //    ========================== DELETE =======================
     
     function hapus_pelanggan(){
-        $id['kd_pelanggan'] = $this->uri->segment(3);
-        $this->model_app->deleteData('tbl_pelanggan',$id);
+        $id['id_pelanggan'] = $this->uri->segment(3);
+        $this->model_app->deleteData('tabel_pelanggan',$id);
         redirect("master");
     }
     function hapus_pegawai(){
-        $id['kd_pegawai'] = $this->uri->segment(3);
-        $this->model_app->deleteData('tbl_pegawai',$id);
+        $id['id_admin'] = $this->uri->segment(3);
+        $this->model_app->deleteData('admin',$id);
         redirect("master");
     }
 }

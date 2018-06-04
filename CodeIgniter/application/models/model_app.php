@@ -43,6 +43,38 @@ class Model_app extends CI_Model{
         return "B-".$kd;
     }
 
+public function upload(){
+        $config['upload_path'] = './image/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size']  = 2048;
+        $config['remove_space'] = TRUE;
+  
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('input_gambar')){ 
+            $return = array(
+                        'result' => 'success', 
+                        'file' => $this->upload->data(), 
+                        'error' => '');
+            return $return;
+        }else{
+            $return = array(
+                        'result' => 'failed', 
+                        'file' => '', 
+                        'error' => $this->upload->display_errors());
+            return $return;
+        }
+    }
+        public function save($upload){
+        $data = array(
+                'id_barang_distro' =>$this->input->post('jenis_barang'),
+                'nama_jenis_barang_distro' =>$this->input->post('nama'),
+                'harga_barang' =>$this->input->post('harga'),
+                'jumlah_barang' => $this->input->post('jumlah'),
+                'id_ukuran' =>$this->input->post('ukuran'),
+                'file' => $upload['file']['file_name']
+        );
+        $this->db->insert('jenis_barang_distro', $data);
+    }
     //    KODE PELANGGAN
     public function getKodePelanggan(){
         $q = $this->db->query("select MAX(RIGHT(id_pelanggan,3)) as kd_max from tabel_pelanggan");
@@ -103,6 +135,11 @@ class Model_app extends CI_Model{
         }
         return $stok;
     }
+	
+	public function get_jenis_barang_distro(){
+	$query = $this->db->query("SELECT * FROM jenis_barang_distro");
+		return $query->result();
+	}
 
     public function getAllData($table)
     {
@@ -122,7 +159,7 @@ class Model_app extends CI_Model{
     }
     function insertData($table,$data)
     {
-        $this->db->insert($table,$data);
+        $this->db->insert($table,$data) or die ($db->error);
     }
     function manualQuery($q)
     {
@@ -181,7 +218,16 @@ class Model_app extends CI_Model{
             return $query->result(); //if data is true
         } else {
             return false; //if data is wrong
+			redirect('login');
         }
     }
+	function get_ukuran(){
+		$query = $this->db->query("SELECT * FROM ukuran");
+		return $query->result();
+	}
+	function get_barang_distro(){
+		$query = $this->db->query("SELECT * FROM barang_distro");
+		return $query->result();
+	}
 
 }

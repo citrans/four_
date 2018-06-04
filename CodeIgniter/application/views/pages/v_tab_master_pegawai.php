@@ -2,9 +2,8 @@
     <thead>
     <tr>
         <th>No</th>
-        <th>Kode Pegawai</th>
-        <th>User ID</th>
-        <th>Nama Pegawai</th>
+         <th>Nama Pegawai</th>
+        <th>No telepon</th>
         <th>Level</th>
         <th class="span2">
             <a href="#modalAddPegawai" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">
@@ -26,9 +25,8 @@
             ?>
             <tr>
                 <td><?php echo $no++; ?></td>
-                <td><?php echo $row->id_admin; ?></td>
                 <td><?php echo $row->username; ?></td>
-                <td><?php echo $row->nama; ?></td>
+                <td><?php echo $row->no_telp; ?></td>
                 <td><?php echo $row->level; ?></td>
 
                 <td>
@@ -57,15 +55,9 @@
     </div>
     <form class="form-horizontal" method="post" action="<?php echo site_url('master/tambah_pegawai')?>">
         <div class="modal-body">
-            <div class="control-group">
-                <label class="control-label">Kode Pegawai</label>
-                <div class="controls">
-                    <input name="kd_pegawai" type="text" value="<?php echo $kd_pegawai; ?>" readonly>
-                </div>
-            </div>
 
             <div class="control-group">
-                <label class="control-label" >User ID</label>
+                <label class="control-label" >Username</label>
                 <div class="controls">
                     <input name="username" type="text" required>
                 </div>
@@ -81,9 +73,9 @@
             <hr/>
 
             <div class="control-group">
-                <label class="control-label">Nama Pegawai</label>
+                <label class="control-label">No telepon</label>
                 <div class="controls">
-                    <input name="nama" type="text">
+                    <input name="nama" type="number" required>
                 </div>
             </div>
 
@@ -123,12 +115,12 @@ if (isset($data_pegawai)){
                     <div class="control-group">
                         <label class="control-label">Kode Pegawai</label>
                         <div class="controls">
-                            <input name="kd_pegawai" type="text" value="<?php echo $row->kd_pegawai; ?>" class="uneditable-input" readonly="true">
+                            <input name="kd_pegawai" type="text" value="<?php echo $row->id_admin; ?>" class="uneditable-input" readonly="true">
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" >User ID</label>
+                        <label class="control-label" >Username</label>
                         <div class="controls">
                             <input name="username" type="text" value="<?php echo $row->username?>" required>
                         </div>
@@ -137,16 +129,16 @@ if (isset($data_pegawai)){
                     <div class="control-group">
                         <label class="control-label" >Password</label>
                         <div class="controls">
-                            <input name="password" type="password" required>
+                            <input name="password" type="password" value="<?php echo $row->password?>" required>
                         </div>
                     </div>
 
                     <hr/>
 
                     <div class="control-group">
-                        <label class="control-label">Nama Pegawai</label>
+                        <label class="control-label">No telepon</label>
                         <div class="controls">
-                            <input name="nama" type="text" value="<?php echo $row->nama?>">
+                            <input name="nama" type="number" value="<?php echo $row->no_telp?>">
                         </div>
                     </div>
 

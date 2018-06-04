@@ -14,8 +14,7 @@ class Distro extends CI_Controller{
         $data=array(
             'title'=>'Distro',
             'active_distro'=>'active',
-            'kd_barang'=>$this->model_app->getKodeBarang(),
-            'data_barang'=>$this->model_app->getAllData('barang_konveksi'),
+            'data_barang'=>$this->model_app->get_jenis_barang_distro(),
         );
         $this->load->view('element/v_header',$data);
         $this->load->view('pages/v_distro');
@@ -26,49 +25,44 @@ class Distro extends CI_Controller{
 //    ===================== INSERT =====================
     function tambah_barang(){
 
-    	$kd_barang=$this->input->post('kd_barang');
-		$nm_barang=$this->input->post('nm_barang');
-		$stok=$this->input->post('stok');
-		$harga=$this->input->post('harga');
-
-		$config['max_size']=2048;
-		$config['allowed_types']="png|jpg|jpeg|gif";
-		$config['remove_spaces']=TRUE;
-		$config['overwrite']=TRUE;
-		$config['upload_path']=FCPATH.'images';
-
-		$this->load->view('pages/v_distro');
-		//$this->v_distro->initialize($config);
-
-		//$this->upload->do_upload('gambar');
-		$data_image=$this->upload->data('file_name');
-		$location=base_url().'images/';
-		$gambar=$location.$data_image;
-
-		$data=array(
-			'kd_barang'=>$kd_barang,
-			'nm_barang'=>$nm_barang,
-			'stok'=>$stok,
-			'harga'=>$harga,
-			'gambar'=> $gambar,
-			);
-
-			$this->model_app->insertData('tbl_barang',$data);
-
-			redirect("distro");        
-
-
-        //$data=array(
-            //'kd_barang'=>$this->input->post('kd_barang'),
-            //'nm_barang'=>$this->input->post('nm_barang'),
-            //'stok'=>$this->input->post('stok'),
-            //'harga'=>$this->input->post('harga'),
-            //'gambar'=>$file['file_name'],
-        //);
-        //$this->model_app->insertData('tbl_barang',$data);
-        //redirect("distro");
-    //}
-}    
+    	$data = array();
+		
+		if(isset($_POST['submit'])){ 
+			$upload = $this->model_app->upload();
+      
+			if($upload['result'] == "success"){ 
+				$this->model_app->save($upload);
+        
+				redirect('distro'); 
+		
+			}else{ 
+				$data['message'] = $upload['error']; 
+			}
+		}
+		$data = array('size'=>$this->model_app->get_ukuran(),
+				'barang'=>$this->model_app->get_barang_distro()
+				);
+		$this->load->view('pages/v_tambahdistro', $data);
+		/*
+		if(isset($_POST['upload'])){
+				$data =$this->model_app->insertData('jenis_barang_distro',array(
+				'id_barang_distro' =>$this->input->post('jenis_barang'),
+				'nama_jenis_barang_distro' =>$this->input->post('nama'),
+				'harga_barang' =>$this->input->post('harga'),
+				'jumlah_barang' => $this->input->post('jumlah'),
+				'id_ukuran' =>$this->input->post('ukuran'),
+				'gambar'=>$this->input->post('gambar')));
+				redirect("distro");
+		}else{
+			//$x =$this->model_app->get_ukuran();
+			$data = array(
+				'size'=>$this->model_app->get_ukuran(),
+				'barang'=>$this->model_app->get_barang_distro()
+				);
+			$this->load->view('pages/v_tambahdistro',$data);
+		}*/
+		
+}	
 
 
 //    ======================== EDIT =======================

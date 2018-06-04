@@ -38,8 +38,9 @@ class login extends CI_Controller{
             return TRUE;
         } else {
             //if form validate false
-            //redirect('index.php/Dashboard','refresh');
-            //echo "salah";
+            $this->session->set_flashdata('notif', 'password atau username salah');
+            redirect('login','refresh');
+			//echo "salah";
             return FALSE;
         }
     }
