@@ -5,10 +5,11 @@
         <th>No</th>
          <th>ID transaksi</th>
         <th>ID pesan</th>
-        <th>ID admin</th>
-        <th>Tanggal Bayar</th>
-        <th>Jam Bayar</th>
+        <th>Nama Pelanggan</th>
+        <th>Nama Admin</th>
+        <th>Waktu Bayar</th>
         <th>Status</th>
+        <th></th>
 
         </th>
     </tr>
@@ -24,10 +25,14 @@
                 <td><?php echo $no++; ?></td>
                 <td><?php echo $row->id_tr_pesan; ?></td>
                 <td><?php echo $row->id_pesan; ?></td>
-                <td><?php echo $row->id_admin; ?></td>
-                 <td><?php echo $row->tgl_bayar; ?></td>
-                <td><?php echo $row->jam_bayar; ?></td>
+                <td><?php echo $row->username; ?></td>
+                 <td><?php echo $row->nama_admin; ?></td>
+                <td><?php echo $row->waktu_bayar; ?></td>
                 <td><?php echo $row->status; ?></td>
+                <td>
+                    <a class="btn btn-mini" href="<?php echo site_url('laporan/view_konve'.$row->id_tr_pesan)?>">
+                        <i class="icon-eye-open"></i> View</a>
+                </td>
 
             </tr>
 

@@ -184,13 +184,34 @@ background-size: 100%;
 	</center>
 	<form class="form-horizontal" method="post" action="<?php echo base_url('distro/tambah_konveksi')?>" enctype = "multipart/from-data">
 		<table style="margin:20px auto;">
-		<tr>
-				<td>jenis barang</td>
+			<tr>
+				<td>nama barang</td>
+				<td><input type="text" name="nama" required=""></td> 
+			</tr>
+			<tr>
+				<td>jenis kain</td>
 				   <td> <select name="jenis_barang">
 						<?php foreach ($barang as $row){ ?>
 						<option value="<?php echo $row->id_jenis_kain;?>"><?php echo $row->nama_kain;?></option>
 						<?php }?>
 					</select></td>
+			</tr>
+			<tr>
+				<td>brand kain</td>
+				   <td> <select name="tipe_jenis_kain">
+						<?php foreach ($barang as $row){ ?>
+						<option value="<?php echo $row->id_jenis_kain;?>"><?php echo $row->tipe_jenis_kain;?></option>
+						<?php }?>
+					</select></td>
+			</tr>
+			<tr>
+				<td>Bordir</td>
+				   <td>
+				     <select name="bordir">
+                        <option value="bordir">Bordir</option>
+                        <option value="sablon">Sablon</option>
+                    </select>
+				</td>
 			</tr>
 			<tr>
 				<td>ukuran</td>
@@ -204,8 +225,8 @@ background-size: 100%;
 					</select> </td>
 			</tr>
 			<tr>
-				<td>nama barang</td>
-				<td><input type="text" name="nama" required=""></td> 
+				<td>harga barang</td>
+				<td><input type="text" name="harga" required=""></td> 
 			</tr>
 			<tr>
 				<td>gambar</td>

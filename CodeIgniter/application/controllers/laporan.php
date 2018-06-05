@@ -13,12 +13,32 @@ class laporan extends CI_Controller{
     function index(){
         $data=array(
             'title'=>'Laporan penjualan',
-            'active_master'=>'active',
-            'data_tr_beli'=>$this->model_app->getAllData('tr_beli'),
-            'data_tr_pesan'=>$this->model_app->getAllData('tr_pesan'),
+            'active_laporan'=>'active',
+            'data_tr_beli'=>$this->model_app->get_lap_distro(),
+            'data_tr_pesan'=>$this->model_app->get_lap_konveksi(),
         );
         $this->load->view('element/v_header',$data);
         $this->load->view('pages/v_laporan');
+        $this->load->view('element/v_footer');
+    }
+    function view_konve1(){
+        $data=array(
+            'title'=>'Laporan penjualan',
+            'active_laporan'=>'active',
+            'data_tr_pesan'=>$this->model_app->get_lap_konveksi(),
+        );
+        $this->load->view('element/v_header',$data);
+        $this->load->view('pages/v_view_lap_konveksi1');
+        $this->load->view('element/v_footer');
+    }
+     function view_distro1(){
+        $data=array(
+            'title'=>'Laporan penjualan',
+            'active_laporan'=>'active',
+            'data_tr_beli'=>$this->model_app->get_lap_distro(),
+        );
+        $this->load->view('element/v_header',$data);
+        $this->load->view('pages/v_view_lap_distro');
         $this->load->view('element/v_footer');
     }
 }

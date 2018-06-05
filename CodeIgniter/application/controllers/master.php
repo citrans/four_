@@ -29,7 +29,7 @@ class Master extends CI_Controller{
     function tambah_pegawai(){
         $data=array(
             'id_admin'=> $this->input->post(''),
-            'username'=>$this->input->post('username'),
+            'nama_admin'=>$this->input->post('username'),
             'password'=>($this->input->post('password')),
             'no_telp'=> $this->input->post('nama'),
             'level'=>$this->input->post('level'),
@@ -58,7 +58,7 @@ class Master extends CI_Controller{
     function edit_pegawai(){
         $id['id_admin'] = $this->input->post('kd_pegawai');
         $data=array(
-            'username'=>$this->input->post('username'),
+            'nama_admin'=>$this->input->post('username'),
             'password'=>($this->input->post('password')),
             'no_telp'=> $this->input->post('nama'),
             'level'=>$this->input->post('level'),

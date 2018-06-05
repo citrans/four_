@@ -3,9 +3,12 @@
     <thead>
     <tr>
         <th>No	</th>
-		<th>id_ukuran</th>
-        <th>id_jenis_kain</th>
-        <th>jenis barang</th>
+		<th>ID Barang</th>
+        <th>Nama Barang</th>
+        <th>Ukuran</th>
+        <th>Jenis Kain</th>
+        <th>Brand Kain</th>
+        <th>Harga</th>
         <th>bordir/sablon</th>
          <th>Gambar</th>
         <th class="span2">
@@ -24,9 +27,12 @@
     ?>
     <tr>
         <td><?php echo $no++; ?></td>
-        <td><?php echo $row->id_ukuran; ?></td>
-        <td><?php echo $row->id_jenis_kain; ?></td>
+        <td><?php echo $row->id_barang_konveksi; ?></td>
         <td><?php echo $row->jenis_barang; ?></td>
+        <td><?php echo $row->size; ?></td>
+        <td><?php echo $row->nama_kain; ?></td>
+        <td><?php echo $row->tipe_jenis_kain; ?></td>
+        <td><?php echo $row->harga_satuan; ?></td>
 		<td><?php echo $row->bordir; ?></td>
         <td><?php echo $row->gambar; ?></td>
         <td>

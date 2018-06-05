@@ -5,6 +5,7 @@
         <th>Nama Pelanggan</th>
         <th>Alamat</th>
         <th>No Telepon</th>
+        <th class="span2"></th>
     </tr>
     </thead>
     <tbody>

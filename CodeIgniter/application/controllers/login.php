@@ -24,7 +24,7 @@ class login extends CI_Controller{
                 //create the session
                 $sess_array = array(
                     'ID' => $row->id_admin,
-                    'USERNAME' => $row->username,
+                    'USERNAME' => $row->nama_admin,
                     'PASS'=>$row->password,
                     'LEVEL' => $row->level,
 					'TELP'=>$row->no_telp,
@@ -47,7 +47,7 @@ class login extends CI_Controller{
 
     function logout() {
         $this->session->unset_userdata('ID');
-        $this->session->unset_userdata('USERNAME');
+        $this->session->unset_userdata('nama_admin');
         $this->session->unset_userdata('PASS');
         $this->session->unset_userdata('NAME');
         $this->session->unset_userdata('LEVEL');

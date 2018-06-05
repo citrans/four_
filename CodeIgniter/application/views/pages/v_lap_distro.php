@@ -5,12 +5,11 @@
         <th>No</th>
          <th>ID transaksi</th>
         <th>ID beli</th>
-        <th>ID admin</th>
-        <th>Tanggal Bayar</th>
-        <th>Jam Bayar</th>
+        <th>Nama pelanggan</th>
+        <th>Nama admin</th>
+        <th>Waktu bayar</th>
         <th>Status</th>
-
-        </th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -24,10 +23,14 @@
                 <td><?php echo $no++; ?></td>
                 <td><?php echo $row->id_tr_beli; ?></td>
                 <td><?php echo $row->id_beli; ?></td>
-                <td><?php echo $row->id_admin; ?></td>
-                 <td><?php echo $row->tgl_bayar; ?></td>
-                <td><?php echo $row->jam_bayar; ?></td>
+                <td><?php echo $row->username; ?></td>
+                 <td><?php echo $row->nama_admin; ?></td>
+                <td><?php echo $row->waktu_bayar; ?></td>
                 <td><?php echo $row->status; ?></td>
+                <td>
+                    <a class="btn btn-mini" href="<?php echo site_url('laporan/view_distro'.$row->id_tr_beli)?>">
+                        <i class="icon-eye-open"></i> View</a>
+                </td>
 
             </tr>
 

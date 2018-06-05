@@ -14,8 +14,8 @@ class Distro extends CI_Controller{
         $data=array(
             'title'=>'Distro',
             'active_distro'=>'active',
-            'data_barang'=>$this->model_app->get_jenis_barang_distro(),
-            'data_konveksi'=>$this->model_app->get_jenis_barang_konveksi(),
+            'data_barang'=>$this->model_app->get_barang_distro(),
+            'data_konveksi'=>$this->model_app->get_barang_konveksi(),
         );
         $this->load->view('element/v_header',$data);
         $this->load->view('pages/v_barang');
@@ -81,8 +81,8 @@ class Distro extends CI_Controller{
                 $data['message'] = $upload['error']; 
             }
         }
-        $data = array('size'=>$this->model_app->get_ukuran(),
-                'barang'=>$this->model_app->get_jenis_kain()
+        $data = array('size'=>$this->model_app->getAllData('ukuran'),
+                'barang'=>$this->model_app->get_kain()
                 );
         $this->load->view('pages/v_tambahkonveksi', $data);
         /*

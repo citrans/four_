@@ -25,7 +25,7 @@
             ?>
             <tr>
                 <td><?php echo $no++; ?></td>
-                <td><?php echo $row->username; ?></td>
+                <td><?php echo $row->nama_admin; ?></td>
                 <td><?php echo $row->no_telp; ?></td>
                 <td><?php echo $row->level; ?></td>
 
@@ -122,7 +122,7 @@ if (isset($data_pegawai)){
                     <div class="control-group">
                         <label class="control-label" >Username</label>
                         <div class="controls">
-                            <input name="username" type="text" value="<?php echo $row->username?>" required>
+                            <input name="username" type="text" value="<?php echo $row->nama_admin?>" required>
                         </div>
                     </div>
 

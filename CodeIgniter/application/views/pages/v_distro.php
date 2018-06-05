@@ -3,12 +3,12 @@
     <thead>
     <tr>
         <th>No	</th>
-		<th>id_jenis</th>
-        <th>id_barang</th>
+		<th>ID Barang</th>
         <th>Nama Barang</th>
+        <th>Jenis Barang</th>
         <th>Harga</th>
         <th>Jumlah</th>
-		<th>id_ukuran</th>
+		<th>ukuran</th>
         <th>Gambar</th>
         <th class="span2">
             <a href="distro/tambah_barang" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">
@@ -27,11 +27,11 @@
     <tr>
         <td><?php echo $no++; ?></td>
         <td><?php echo $row->id_jenis_barang_distro; ?></td>
-        <td><?php echo $row->id_barang_distro; ?></td>
+        <td><?php echo $row->nama_barang; ?></td>
         <td><?php echo $row->nama_jenis_barang_distro; ?></td>
         <td><?php echo currency_format($row->harga_barang);?></td>
 		<td><?php echo $row->jumlah_barang; ?></td>
-		<td><?php echo $row->id_ukuran; ?></td>
+		<td><?php echo $row->size; ?></td>
         <td><?php echo $row->gambar; ?></td>
         <td>
             <a class="btn btn-mini" href="#modalEditBarang<?php echo $row->id_jenis_barang_distro?>" data-toggle="modal"><i class="icon-pencil"></i> Edit</a>
