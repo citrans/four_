@@ -46,18 +46,18 @@
                         <li class="<?php if(isset($active_dashboard)){echo $active_dashboard ;}?>">
                             <a href="<?php echo site_url('dashboard')?>"><i class="icon-home"></i> Home</a>
                         </li>
-                        <li class="<?php if(isset($active_penjualan)){echo $active_penjualan ;}?>">
+                       <!-- <li class="<?php if(isset($active_penjualan)){echo $active_penjualan ;}?>">
                             <a href="<?php echo site_url('penjualan')?>"><i class="icon-barcode"></i> Order</a>
-                        </li>
+                        </li>-->
                         <li class="<?php if(isset($active_distro)){echo $active_distro ;}?>">
-                        <a href="<?php echo site_url('distro')?>"><i class="icon-user"></i> Distro</a>
+                        <a href="<?php echo site_url('distro')?>"><i class="icon-cog"></i> Barang</a>
                         </li>
-                        <!--
+                        
                         <li class="<?php if(isset($active_laporan)){echo $active_laporan ;}?>">
                             <a href="<?php echo site_url('laporan')?>"><i class="icon-file"></i> Laporan</a>
-                        </li> -->
+                        </li> 
                         <li class="<?php if(isset($active_master)){echo $active_master ;}?>">
-                            <a href="<?php echo site_url('master')?>"><i class="icon-cog"></i> Master Data</a>
+                            <a href="<?php echo site_url('master')?>"><i class="icon-user"></i> Master Data</a>
                         </li>
                         <li><a href="<?php echo site_url('login/logout')?>" style="background: #333; color: #fff";><i class="icon-white icon-remove-sign"></i>  Logout</a></li>
                     </ul>

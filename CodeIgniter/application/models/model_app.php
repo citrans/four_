@@ -141,6 +141,11 @@ public function upload(){
 		return $query->result();
 	}
 
+    public function get_jenis_barang_konveksi(){
+    $query = $this->db->query("SELECT * FROM barang_konveksi");
+        return $query->result();
+    }
+
     public function getAllData($table)
     {
         return $this->db->get($table)->result();
@@ -229,5 +234,17 @@ public function upload(){
 		$query = $this->db->query("SELECT * FROM barang_distro");
 		return $query->result();
 	}
+    function get_jenis_kain(){
+        $query = $this->db->query("SELECT * FROM jenis_kain");
+        return $query->result();
+    }
+    function get_tr_pesan(){
+        $query = $this->db->query("SELECT * FROM tr_pesan");
+        return $query->result();
+    }
+    function get_tr_beli(){
+        $query = $this->db->query("SELECT * FROM tr_beli");
+        return $query->result();
+    }
 
 }

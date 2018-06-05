@@ -14,10 +14,11 @@ class Penjualan extends CI_Controller{
         $data=array(
             'title'=>'Penjualan Barang',
             'active_penjualan'=>'active',
-            'data_penjualan'=>$this->model_app->getAllDataPenjualan(),
+            'data_penjualan'=>$this->model_app->getAllData('beli'),
+            'data_penjualan_konveksi'=>$this->model_app->getAllData('pesan'),
         );
         $this->load->view('element/v_header',$data);
-        $this->load->view('pages/v_penjualan');
+        $this->load->view('pages/v_order');
         $this->load->view('element/v_footer');
 
         $this->session->unset_userdata('limit_add_cart');
