@@ -21,7 +21,7 @@ class laporan extends CI_Controller{
         $this->load->view('pages/v_laporan');
         $this->load->view('element/v_footer');
     }
-    function view_konve1(){
+    function view_konveksi(){
         $data=array(
             'title'=>'Laporan penjualan',
             'active_laporan'=>'active',
@@ -31,7 +31,7 @@ class laporan extends CI_Controller{
         $this->load->view('pages/v_view_lap_konveksi1');
         $this->load->view('element/v_footer');
     }
-     function view_distro1(){
+     function view_distro(){
         $data=array(
             'title'=>'Laporan penjualan',
             'active_laporan'=>'active',

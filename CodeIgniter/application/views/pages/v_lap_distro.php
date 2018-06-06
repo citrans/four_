@@ -28,7 +28,7 @@
                 <td><?php echo $row->waktu_bayar; ?></td>
                 <td><?php echo $row->status; ?></td>
                 <td>
-                    <a class="btn btn-mini" href="<?php echo site_url('laporan/view_distro'.$row->id_tr_beli)?>">
+                    <a class="btn btn-mini" href="<?php echo site_url('laporan/view_distro')?>">
                         <i class="icon-eye-open"></i> View</a>
                 </td>
 

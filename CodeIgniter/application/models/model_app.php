@@ -115,7 +115,8 @@ public function upload(){
                                     JOIN ukuran ON barang_konveksi.id_ukuran=ukuran.id_ukuran
                                     JOIN jenis_kain ON barang_konveksi.id_jenis_kain = jenis_kain.id_jenis_kain
                                     JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain= tipe_jenis_kain.id_tipe_jenis_kain
-                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain");
+                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    WHERE tr_pesan.status <> 'konfirmasi'");
         return $query->result();
     }
     function get_lap_distro(){
@@ -126,7 +127,8 @@ public function upload(){
                                     JOIN tabel_pelanggan ON beli.id_pelanggan = tabel_pelanggan.id_pelanggan
                                     JOIN jenis_barang_distro ON beli.id_jenis_barang_distro=jenis_barang_distro.id_jenis_barang_distro
                                     JOIN barang_distro ON jenis_barang_distro.id_barang_distro = barang_distro.id_barang_distro
-                                    JOIN ukuran ON jenis_barang_distro.id_ukuran = ukuran.id_ukuran");
+                                    JOIN ukuran ON jenis_barang_distro.id_ukuran = ukuran.id_ukuran
+                                    WHERE tr_beli.status <> 'konfirmasi'");
         return $query->result();
     }
     function get_barang_konveksi(){
@@ -154,5 +156,34 @@ public function upload(){
                                     WHERE jenis_kain.id_tipe_jenis_kain=tipe_jenis_kain.id_tipe_jenis_kain");
         return $query->result();
     }
+    function get_order_distro(){
+        $query = $this->db->query("SELECT tr_beli.*,beli.*,tabel_pelanggan.*,jenis_barang_distro.*,admin.*,barang_distro.*,ukuran.*
+                                    FROM tr_beli
+                                    JOIN beli ON tr_beli.id_beli=beli.id_beli
+                                    JOIN admin on tr_beli.id_admin =admin.id_admin
+                                    JOIN tabel_pelanggan ON beli.id_pelanggan = tabel_pelanggan.id_pelanggan
+                                    JOIN jenis_barang_distro ON beli.id_jenis_barang_distro=jenis_barang_distro.id_jenis_barang_distro
+                                    JOIN barang_distro ON jenis_barang_distro.id_barang_distro = barang_distro.id_barang_distro
+                                    JOIN ukuran ON jenis_barang_distro.id_ukuran = ukuran.id_ukuran
+                                    WHERE tr_beli.status <> 'lunas'
+                                    ");
+        return $query->result();
+    }
+    function get_order_konveksi(){
+        $query = $this->db->query("SELECT tr_pesan.*, admin.*,pesan.*, tabel_pelanggan.*, barang_konveksi.*,jenis_kain.*,ukuran.*,tipe_jenis_kain.*,warna_kain.*
+                                    FROM tr_pesan
+                                    JOIN admin ON tr_pesan.id_admin= admin.id_admin
+                                    JOIN pesan ON tr_pesan.id_pesan=pesan.id_pesan
+                                    JOIN tabel_pelanggan ON pesan.id_pelanggan=tabel_pelanggan.id_pelanggan
+                                    JOIN barang_konveksi ON pesan.id_barang_konveksi=barang_konveksi.id_barang_konveksi
+                                    JOIN ukuran ON barang_konveksi.id_ukuran=ukuran.id_ukuran
+                                    JOIN jenis_kain ON barang_konveksi.id_jenis_kain = jenis_kain.id_jenis_kain
+                                    JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain= tipe_jenis_kain.id_tipe_jenis_kain
+                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    WHERE tr_pesan.status <> 'lunas'
+                                    ");
+        return $query->result();
+    }
+
 
 }

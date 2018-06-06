@@ -5,13 +5,14 @@
     <tr>
         <th>No</th>
         <th>ID Beli</th>
-        <th>ID Pelanggan</th>
-        <th>ID JENIS BARANG</th>
+        <th>Nama Pelanggan</th>
+        <th>JENIS BARANG</th>
         <th>Jumlah</th>
         <th>Total Harga</th>
-        <th>Tanggal Beli</th>
-        <th>Jam Beli</th>
-        <th class="span3"></th>
+        <th>Waktu Beli</th>
+        <th>Waktu Bayar</th>
+        <th>Status</th>
+        <th class="span2"></th>
            
     </tr>
     </thead>
@@ -24,20 +25,19 @@
             <tr class="gradeX">
                 <td><?php echo $no++; ?></td>
                 <td><?php echo $row->id_beli; ?></td>
-                <td><?php echo $row->id_pelanggan; ?></td>
-                <td><?php echo $row->id_jenis_barang_distro; ?></td>
+                <td><?php echo $row->username; ?></td>
+                <td><?php echo $row->nama_jenis_barang_distro; ?></td>
                 <td><?php echo $row->jumlah_beli; ?> Items</td>
                 <td><?php echo $row->total_harga; ?></td>
-                <td><?php echo $row->jam_beli; ?></td>
-                <td><?php echo $row->tgl_beli; ?></td>
+                <td><?php echo $row->waktu_beli; ?></td>
+                <td><?php echo $row->waktu_bayar; ?></td>
+                <td><?php echo $row->status; ?></td>
                 <td>
-                    <a class="btn btn-mini" href="<?php echo site_url('penjualan/detail_penjualan/'.$row->id_beli)?>">
+                    <a class="btn btn-mini" href="<?php echo site_url('penjualan/detail_penjualan/'.$row->id_tr_beli)?>">
                         <i class="icon-eye-open"></i> View</a>
-                    <a class="btn btn-mini" href="<?php echo site_url('penjualan/hapus/'.$row->id_beli)?>"
+                    <a class="btn btn-mini" href="<?php echo site_url('penjualan/hapus_jual/'.$row->id_tr_beli)?>"
                        onclick="return confirm('Anda Yakin ?');">
                         <i class="icon-trash"></i> Hapus</a>
-                    <a class="btn btn-mini btnPrint" href="<?php echo site_url('cetak/print_penjualan/'.$row->id_beli)?>">
-                        <i class="icon-print"></i> Print</a>
                 </td>
             </tr>
         <?php }

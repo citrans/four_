@@ -14,8 +14,8 @@ class Penjualan extends CI_Controller{
         $data=array(
             'title'=>'Penjualan Barang',
             'active_penjualan'=>'active',
-            'data_penjualan'=>$this->model_app->getAllData('beli'),
-            'data_penjualan_konveksi'=>$this->model_app->getAllData('pesan'),
+            'data_penjualan'=>$this->model_app->get_order_distro(),
+            'data_penjualan_konveksi'=>$this->model_app->get_order_konveksi(),
         );
         $this->load->view('element/v_header',$data);
         $this->load->view('pages/v_order');
@@ -39,16 +39,46 @@ class Penjualan extends CI_Controller{
         $this->load->view('element/v_footer');
     }
 
+     function update_tr_jual(){
+        $id['id_tr_beli'] = $this->input->post('id_tr');
+        $data=array(
+            'waktu_bayar'=> $this->input->post(''),
+            'status'=>$this->input->post('status'),
+        );
+        $this->model_app->updateData('tr_beli',$data,$id);
+        redirect("penjualan");
+    }
+
+     function update_tr_konveksi(){
+        $id['id_tr_pesan'] = $this->input->post('id_tr');
+        $data=array(
+            'waktu_bayar'=> $this->input->post(''),
+            'status'=>$this->input->post('status'),
+        );
+        $this->model_app->updateData('tr_pesan',$data,$id);
+        redirect("penjualan");
+    }
+
     function detail_penjualan(){
         $id= $this->uri->segment(3);
         $data=array(
             'title'=>'Detail Penjualan Barang',
             'active_penjualan'=>'active',
-            'dt_penjualan'=>$this->model_app->getDataPenjualan($id),
-            'barang_jual'=>$this->model_app->getBarangPenjualan($id),
+            'data_penjualan'=>$this->model_app->get_order_distro(),
         );
         $this->load->view('element/v_header',$data);
         $this->load->view('pages/v_detail_penjualan');
+        $this->load->view('element/v_footer');
+    }
+    function detail_jual_konveksi(){
+         $id= $this->uri->segment(3);
+        $data=array(
+            'title'=>'Detail Penjualan Barang',
+            'active_penjualan'=>'active',
+            'data_penjualan_konveksi'=>$this->model_app->get_order_konveksi(),
+        );
+        $this->load->view('element/v_header',$data);
+        $this->load->view('pages/v_detail_konveksi');
         $this->load->view('element/v_footer');
     }
 
@@ -147,7 +177,7 @@ class Penjualan extends CI_Controller{
     }
 
     function hapus(){
-        $hapus['kd_penjualan'] = $this->uri->segment(3);
+        $hapus['id_tr_beli'] = $this->uri->segment(3);
         $q = $this->model_app->getSelectedData("tbl_penjualan_detail",$hapus);
         foreach($q->result() as $d){
             $d_u['stok'] = $this->model_app->getTambahStok($d->kd_barang,$d->qty);
@@ -157,5 +187,10 @@ class Penjualan extends CI_Controller{
         $this->model_app->deleteData("tbl_penjualan_header",$hapus);
         $this->model_app->deleteData("tbl_penjualan_detail",$hapus);
         redirect('penjualan');
+    }
+     function hapus_jual(){
+        $id['id_tr_beli'] = $this->uri->segment(3);
+        $this->model_app->deleteData('tr_beli',$id);
+        redirect("penjualan");
     }
 }
