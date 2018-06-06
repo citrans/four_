@@ -78,7 +78,7 @@
                         <a href="<?php echo site_url('penjualan')?>"><i class="icon-barcode"></i> Order</a>
                     </li>
                     <li class="<?php if(isset($active_distro)){echo $active_distro ;}?>">
-                        <a href="<?php echo site_url('distro')?>"><i class="icon-user"></i> Distro</a>
+                        <a href="<?php echo site_url('distro')?>"><i class="icon-user"></i> Barang</a>
                     </li>
                     <!--
                     <li class="<?php if(isset($active_laporan)){echo $active_laporan ;}?>">

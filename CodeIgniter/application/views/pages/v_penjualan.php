@@ -34,7 +34,7 @@
                 <td><?php echo $row->status; ?></td>
                 <td>
                     <a class="btn btn-mini" href="<?php echo site_url('penjualan/detail_penjualan/'.$row->id_tr_beli)?>">
-                        <i class="icon-eye-open"></i> View</a>
+                        <i class="icon-eye-open"></i> Ubah</a>
                     <a class="btn btn-mini" href="<?php echo site_url('penjualan/hapus_jual/'.$row->id_tr_beli)?>"
                        onclick="return confirm('Anda Yakin ?');">
                         <i class="icon-trash"></i> Hapus</a>

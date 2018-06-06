@@ -30,7 +30,7 @@
                 <td><?php echo $row->waktu_bayar; ?></td>
                 <td><?php echo $row->status; ?></td>
                 <td>
-                    <a class="btn btn-mini" href="<?php echo site_url('laporan/view_konveksi')?>">
+                    <a class="btn btn-mini" href="<?php echo site_url('laporan/view_konveksi/'.$row->id_tr_pesan)?>">
                         <i class="icon-eye-open"></i> View</a>
                 </td>
 
