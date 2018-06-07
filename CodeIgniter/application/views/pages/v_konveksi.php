@@ -10,7 +10,6 @@
         <th>Brand Kain</th>
         <th>Harga</th>
         <th>bordir/sablon</th>
-         <th>Gambar</th>
         <th class="span2">
             <a href="distro/tambah_konveksi" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">
                 <i class="icon-plus-sign icon-white"></i> Tambah Data
@@ -34,7 +33,6 @@
         <td><?php echo $row->tipe_jenis_kain; ?></td>
         <td><?php echo $row->harga_satuan; ?></td>
 		<td><?php echo $row->bordir; ?></td>
-        <td><?php echo $row->gambar; ?></td>
         <td>
             <a class="btn btn-mini" href="#modalEditBarang<?php echo $row->id_barang_konveksi?>" data-toggle="modal"><i class="icon-pencil"></i> Edit</a>
             <a class="btn btn-mini" href="<?php echo site_url('distro/hapus_barang/'.$row->id_barang_konveksi);?>"
@@ -91,12 +89,6 @@ if (isset($data_konveksi)){
                         <label class="control-label" >Bordir/Sablon</label>
                         <div class="controls">
                             <input name="bordir" type="text" value="<?php echo $row->bordir;?>">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Gambar</label>
-                        <div class="controls">
-                            <input name="gambar" type="text" value="<?php echo $row->gambar;?>">
                         </div>
                     </div>
                 </div>

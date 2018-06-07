@@ -105,6 +105,10 @@ public function upload(){
         $query = $this->db->query("SELECT * FROM jenis_kain");
         return $query->result();
     }
+    function get_data_edit($id){
+        $query = $this->db->query("SELECT * FROM jenis_barang_distro WHERE id_jenis_barang_distro = '$id'");
+        return $query->result_array();
+    }
     function get_lap_konveksi(){
         $query = $this->db->query("SELECT tr_pesan.*,pesan.*,admin.*,tabel_pelanggan.*,barang_konveksi.*,ukuran.*,jenis_kain.*,tipe_jenis_kain.*,warna_kain.*
                                     FROM tr_pesan

@@ -9,7 +9,6 @@
         <th>Harga</th>
         <th>Jumlah</th>
 		<th>ukuran</th>
-        <th>Gambar</th>
         <th class="span2">
             <a href="distro/tambah_barang" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">
                 <i class="icon-plus-sign icon-white"></i> Tambah Data
@@ -32,7 +31,6 @@
         <td><?php echo currency_format($row->harga_barang);?></td>
 		<td><?php echo $row->jumlah_barang; ?></td>
 		<td><?php echo $row->size; ?></td>
-        <td><?php echo $row->gambar; ?></td>
         <td>
             <a class="btn btn-mini" href="#modalEditBarang<?php echo $row->id_jenis_barang_distro?>" data-toggle="modal"><i class="icon-pencil"></i> Edit</a>
             <a class="btn btn-mini" href="<?php echo site_url('distro/hapus_barang/'.$row->id_jenis_barang_distro);?>"
@@ -69,26 +67,19 @@ if (isset($data_barang)){
                     <div class="control-group">
                         <label class="control-label" >Jenis Barang</label>
                         <div class="controls">
-                            <input name="jenis_barang" type="text" value="<?php echo $row->id_barang_distro;?>" >
+                            <input name="jenis_barang" type="text" value="<?php echo $row->nama_barang;?>" readonly>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >Ukuran</label>
                         <div class="controls">
-                            <input name="ukuran" type="text" value="<?php echo $row->id_ukuran;?>" >
+                            <input name="ukuran" type="text" value="<?php echo $row->size;?>" readonly>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >Nama Barang</label>
                         <div class="controls">
-                            <input name="nm_barang" type="text" value="<?php echo $row->nama_jenis_barang_distro;?>" >
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" >Jumlah</label>
-                        <div class="controls">
-                            <input name="stok" type="text" value="<?php echo $row->jumlah_barang;?>">
+                            <input name="nm_barang" type="text" value="<?php echo $row->nama_jenis_barang_distro;?>" readonly>
                         </div>
                     </div>
 
@@ -99,12 +90,20 @@ if (isset($data_barang)){
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label">Gambar</label>
+                     <div class="control-group">
+                        <label class="control-label" >Jumlah Tersisa</label>
                         <div class="controls">
-                            <input name="gambar" type="text" value="<?php echo $row->gambar;?>">
+                            <input name="stok" type="text" value="<?php echo $row->jumlah_barang;?>" readonly>
                         </div>
                     </div>
+
+                     <div class="control-group">
+                        <label class="control-label" >Jumlah Tambahan</label>
+                        <div class="controls">
+                           <input type="varchar" name="stok_tambah" required="">
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

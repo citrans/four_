@@ -187,9 +187,11 @@ background-size: 100%;
 		<tr>
 				<td>jenis barang</td>
 				   <td> <select name="jenis_barang">
-						<?php foreach ($barang as $row){ ?>
-						<option value="<?php echo $row->id_barang_distro;?>"><?php echo $row->nama_barang;?></option>
-						<?php }?>
+						<?php 
+							foreach ($barang as $row){ 
+							echo '<option value="'.$row->id_barang_distro.'>">'. $row->nama_barang.'</option>';
+							}
+					   ?>
 					</select></td>
 			</tr>
 			<tr>
@@ -213,16 +215,12 @@ background-size: 100%;
 			</tr>
 			<tr>
 				<td>jumlah barang</td>
-				<td><input type="number" name="harga" required=""></td>  
-			</tr>
-			<tr>
-				<td>gambar</td>
-				<td><input type="file" name="input_gambar" required=""></td>   
+				<td><input type="number" name="jumlah" required=""></td>  
 			</tr>
 			<tr>
 				<td></td>
 				<a href="<?php echo base_url()?>distro">Kembali</a>
-				<td><input type="submit" name="submit" value="Tambah"></td>
+				<td><input type="submit" name="submit" value="submit"></td>
 			</tr>
 		</table>
 	</form>	

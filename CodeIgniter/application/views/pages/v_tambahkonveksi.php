@@ -229,10 +229,6 @@ background-size: 100%;
 				<td><input type="text" name="harga" required=""></td> 
 			</tr>
 			<tr>
-				<td>gambar</td>
-				<td><input type="file" name="input_gambar" required=""></td>   
-			</tr>
-			<tr>
 				<td></td>
 				<a href="<?php echo base_url()?>distro">Kembali</a>
 				<td><input type="submit" name="submit" value="Tambah"></td>

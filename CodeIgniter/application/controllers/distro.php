@@ -25,100 +25,49 @@ class Distro extends CI_Controller{
 //
 //    ===================== INSERT =====================
     function tambah_barang(){
+        if (isset($_POST['submit'])){
+            $data = array (
+            'id_jenis_barang_distro' => $this->input->post(''),
+            'id_barang_distro' => $this->input->post('jenis_barang'),
+            'id_ukuran' => $this->input->post('ukuran'),
+            'nama_jenis_barang_distro' => $this->input->post('nama'),
+            'harga_barang' => $this->input->post('harga'),
+            'jumlah_barang' => $this->input->post('jumlah'),
+            'gambar' => $this->input->post('')
+            );
+            $this->model_app->insertData('jenis_barang_distro',$data);
+            redirect('distro');
+        }else{
+            $data = array('size'=>$this->model_app->get_ukuran(),
+                'barang'=>$this->model_app->getAllData('barang_distro')
+                );
+        $this->load->view('pages/v_tambahdistro', $data);
+        }
 
-    	$data = array();
 		
-		if(isset($_POST['submit'])){ 
-			$upload = $this->model_app->upload();
-      
-			if($upload['result'] == "success"){ 
-				$this->model_app->save($upload);
-        
-				redirect('distro'); 
-		
-			}else{ 
-				$data['message'] = $upload['error']; 
-			}
-		}
-		$data = array('size'=>$this->model_app->get_ukuran(),
-				'barang'=>$this->model_app->get_barang_distro()
-				);
-		$this->load->view('pages/v_tambahdistro', $data);
-		/*
-		if(isset($_POST['upload'])){
-				$data =$this->model_app->insertData('jenis_barang_distro',array(
-				'id_barang_distro' =>$this->input->post('jenis_barang'),
-				'nama_jenis_barang_distro' =>$this->input->post('nama'),
-				'harga_barang' =>$this->input->post('harga'),
-				'jumlah_barang' => $this->input->post('jumlah'),
-				'id_ukuran' =>$this->input->post('ukuran'),
-				'gambar'=>$this->input->post('gambar')));
-				redirect("distro");
-		}else{
-			//$x =$this->model_app->get_ukuran();
-			$data = array(
-				'size'=>$this->model_app->get_ukuran(),
-				'barang'=>$this->model_app->get_barang_distro()
-				);
-			$this->load->view('pages/v_tambahdistro',$data);
-		}*/
 		
 }	
 
     function tambah_konveksi(){
 
-        $data = array();
-        
-        if(isset($_POST['submit'])){ 
-            $upload = $this->model_app->upload();
-      
-            if($upload['result'] == "success"){ 
-                $this->model_app->save($upload);
-        
-                redirect('distro'); 
-        
-            }else{ 
-                $data['message'] = $upload['error']; 
-            }
-        }
         $data = array('size'=>$this->model_app->getAllData('ukuran'),
                 'barang'=>$this->model_app->get_kain()
                 );
-        $this->load->view('pages/v_tambahkonveksi', $data);
-        /*
-        if(isset($_POST['upload'])){
-                $data =$this->model_app->insertData('jenis_barang_distro',array(
-                'id_barang_distro' =>$this->input->post('jenis_barang'),
-                'nama_jenis_barang_distro' =>$this->input->post('nama'),
-                'harga_barang' =>$this->input->post('harga'),
-                'jumlah_barang' => $this->input->post('jumlah'),
-                'id_ukuran' =>$this->input->post('ukuran'),
-                'gambar'=>$this->input->post('gambar')));
-                redirect("distro");
-        }else{
-            //$x =$this->model_app->get_ukuran();
-            $data = array(
-                'size'=>$this->model_app->get_ukuran(),
-                'barang'=>$this->model_app->get_barang_distro()
-                );
-            $this->load->view('pages/v_tambahdistro',$data);
-        }*/
-        
+        $this->load->view('pages/v_tambahkonveksi', $data);  
 }   
 
 
 //    ======================== EDIT =======================
     function edit_barang(){
         $id['id_jenis_barang_distro'] = $this->input->post('kd_barang');
+        $jumlah_l = $this->input->post('stok');
+        $jumlah_b = $this->input->post('stok_tambah');
+        $total = $jumlah_l + $jumlah_b;
         $data=array(
-            'id_barang_distro'=>$this->input->post('jenis_barang'),
-            'nama_jenis_barang_distro'=>$this->input->post('nm_barang'),
             'harga_barang'=>$this->input->post('harga'),
-            'jumlah_barang'=>$this->input->post('jumlah'),
-            'id_ukuran'=>$this->input->post('ukuran'),
-            'gambar'=>$this->input->post('gambar'),
+            'jumlah_barang'=>$total,
         );
-        $this->model_app->updateData('tbl_barang',$data,$id);
+        $this->model_app->updateData('jenis_barang_distro',$data,$id);
         redirect("distro");
     }
 
