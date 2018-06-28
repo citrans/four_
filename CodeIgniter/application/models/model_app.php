@@ -8,53 +8,6 @@ class Model_app extends CI_Model{
 
     //  ================= AUTOMATIC CODE ==================
 
-//upload gambar gagal
-public function upload(){
-        $config['upload_path'] = './image/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size']  = 2048;
-        $config['remove_space'] = TRUE;
-  
-        $this->load->library('upload', $config);
-        if($this->upload->do_upload('input_gambar')){ 
-            $return = array(
-                        'result' => 'success', 
-                        'file' => $this->upload->data(), 
-                        'error' => '');
-            return $return;
-        }else{
-            $return = array(
-                        'result' => 'failed', 
-                        'file' => '', 
-                        'error' => $this->upload->display_errors());
-            return $return;
-        }
-    }
-    //save data+image gagal
-        public function save($upload){
-        $data = array(
-                'id_barang_distro' =>$this->input->post('jenis_barang'),
-                'nama_jenis_barang_distro' =>$this->input->post('nama'),
-                'harga_barang' =>$this->input->post('harga'),
-                'jumlah_barang' => $this->input->post('jumlah'),
-                'id_ukuran' =>$this->input->post('ukuran'),
-                'file' => $upload['file']['file_name']
-        );
-        $this->db->insert('jenis_barang_distro', $data);
-    }
-
-    //tambah stok
-    public function getTambahStok($kd_barang,$tambah)
-    {
-        $q = $this->db->query("select stok from tbl_barang where kd_barang='".$kd_barang."'");
-        $stok = "";
-        foreach($q->result() as $d)
-        {
-            $stok = $d->stok + $tambah;
-        }
-        return $stok;
-    }
-
     public function getAllData($table)
     {
         return $this->db->get($table)->result();
@@ -75,10 +28,6 @@ public function upload(){
     {
         $this->db->insert($table,$data) or die ($db->error);
     }
-    function manualQuery($q)
-    {
-        return $this->db->query($q);
-    }
 
     function login($username, $password) {
         //create query to connect user login database
@@ -97,43 +46,41 @@ public function upload(){
 			redirect('login');
         }
     }
-	function get_ukuran(){
-		$query = $this->db->query("SELECT * FROM ukuran");
-		return $query->result();
-	}
-    function get_jenis_kain(){
-        $query = $this->db->query("SELECT * FROM jenis_kain");
-        return $query->result();
-    }
-    function get_data_edit($id){
-        $query = $this->db->query("SELECT * FROM jenis_barang_distro WHERE id_jenis_barang_distro = '$id'");
-        return $query->result_array();
-    }
+	// function get_ukuran(){
+	// 	$query = $this->db->query("SELECT * FROM ukuran");
+	// 	return $query->result();
+	// }
+ //    function get_jenis_kain(){
+ //        $query = $this->db->query("SELECT * FROM jenis_kain");
+ //        return $query->result();
+ //    }
+ //    function get_data_edit($id){
+ //        $query = $this->db->query("SELECT * FROM jenis_barang_distro WHERE id_jenis_barang_distro = '$id'");
+ //        return $query->result_array();
+ //    }
     function get_lap_konveksi(){
-        $query = $this->db->query("SELECT tr_pesan.*,pesan.*,admin.*,tabel_pelanggan.*,barang_konveksi.*,ukuran.*,jenis_kain.*,tipe_jenis_kain.*,warna_kain.*
+        $query = $this->db->query("SELECT tr_pesan.*,pesan.*,admin.*,tabel_pelanggan.*,barang_konveksi.*,ukuran.*,jenis_kain.*,warna_kain.*
                                     FROM tr_pesan
                                     JOIN admin ON tr_pesan.id_admin= admin.id_admin
                                     JOIN pesan ON tr_pesan.id_pesan=pesan.id_pesan
                                     JOIN tabel_pelanggan ON pesan.id_pelanggan=tabel_pelanggan.id_pelanggan
                                     JOIN barang_konveksi ON pesan.id_barang_konveksi=barang_konveksi.id_barang_konveksi
                                     JOIN ukuran ON barang_konveksi.id_ukuran=ukuran.id_ukuran
-                                    JOIN jenis_kain ON barang_konveksi.id_jenis_kain = jenis_kain.id_jenis_kain
-                                    JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain= tipe_jenis_kain.id_tipe_jenis_kain
-                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    JOIN warna_kain ON barang_konveksi.id_warna_kain=warna_kain.id_warna_kain
+                                    JOIN jenis_kain ON jenis_kain.id_jenis_kain= warna_kain.id_jenis_kain
                                     WHERE tr_pesan.status <> 'konfirmasi'");
         return $query->result();
     }
      function get_vlap_konveksi($id){
-        $query = $this->db->query("SELECT tr_pesan.*,pesan.*,admin.*,tabel_pelanggan.*,barang_konveksi.*,ukuran.*,jenis_kain.*,tipe_jenis_kain.*,warna_kain.*
+        $query = $this->db->query("SELECT tr_pesan.*,pesan.*,admin.*,tabel_pelanggan.*,barang_konveksi.*,ukuran.*,jenis_kain.*,warna_kain.*
                                     FROM tr_pesan
                                     JOIN admin ON tr_pesan.id_admin= admin.id_admin
                                     JOIN pesan ON tr_pesan.id_pesan=pesan.id_pesan
                                     JOIN tabel_pelanggan ON pesan.id_pelanggan=tabel_pelanggan.id_pelanggan
                                     JOIN barang_konveksi ON pesan.id_barang_konveksi=barang_konveksi.id_barang_konveksi
                                     JOIN ukuran ON barang_konveksi.id_ukuran=ukuran.id_ukuran
-                                    JOIN jenis_kain ON barang_konveksi.id_jenis_kain = jenis_kain.id_jenis_kain
-                                    JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain= tipe_jenis_kain.id_tipe_jenis_kain
-                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    JOIN warna_kain ON barang_konveksi.id_warna_kain=warna_kain.id_warna_kain
+                                    JOIN jenis_kain ON jenis_kain.id_jenis_kain= warna_kain.id_jenis_kain
                                     WHERE tr_pesan.status <> 'konfirmasi'
                                     AND tr_pesan.id_tr_pesan=$id");
         return $query->result();
@@ -164,12 +111,11 @@ public function upload(){
         return $query->result();
     }
     function get_barang_konveksi(){
-        $query = $this->db->query("SELECT barang_konveksi.*,ukuran.*,jenis_kain.*,tipe_jenis_kain.*,warna_kain.*
+        $query = $this->db->query("SELECT barang_konveksi.*,ukuran.*,jenis_kain.*,warna_kain.*
                                     FROM barang_konveksi
                                     JOIN ukuran ON barang_konveksi.id_ukuran =ukuran.id_ukuran
-                                    JOIN jenis_kain ON barang_konveksi.id_jenis_kain=jenis_kain.id_jenis_kain
-                                    JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain = tipe_jenis_kain.id_tipe_jenis_kain
-                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    JOIN warna_kain ON barang_konveksi.id_warna_kain=warna_kain.id_warna_kain
+                                    JOIN jenis_kain ON jenis_kain.id_jenis_kain= warna_kain.id_jenis_kain
                                     ");
         return $query->result();
     }
@@ -183,9 +129,9 @@ public function upload(){
         return $query->result();
     }
     function get_kain(){
-        $query = $this->db->query("SELECT jenis_kain.*,tipe_jenis_kain.*
-                                    FROM jenis_kain, tipe_jenis_kain
-                                    WHERE jenis_kain.id_tipe_jenis_kain=tipe_jenis_kain.id_tipe_jenis_kain");
+        $query = $this->db->query("SELECT jenis_kain.*,warna_kain.*
+                                    FROM jenis_kain, warna_kain
+                                    WHERE jenis_kain.id_jenis_kain=warna_kain.id_jenis_kain");
         return $query->result();
     }
     function get_order_distro(){
@@ -216,22 +162,21 @@ public function upload(){
         return $query->result();
     }
     function get_order_konveksi(){
-        $query = $this->db->query("SELECT tr_pesan.*, admin.*,pesan.*, tabel_pelanggan.*, barang_konveksi.*,jenis_kain.*,ukuran.*,tipe_jenis_kain.*,warna_kain.*
+        $query = $this->db->query("SELECT tr_pesan.*, admin.*,pesan.*, tabel_pelanggan.*, barang_konveksi.*,jenis_kain.*,ukuran.*,warna_kain.*
                                     FROM tr_pesan
                                     JOIN admin ON tr_pesan.id_admin= admin.id_admin
                                     JOIN pesan ON tr_pesan.id_pesan=pesan.id_pesan
                                     JOIN tabel_pelanggan ON pesan.id_pelanggan=tabel_pelanggan.id_pelanggan
                                     JOIN barang_konveksi ON pesan.id_barang_konveksi=barang_konveksi.id_barang_konveksi
                                     JOIN ukuran ON barang_konveksi.id_ukuran=ukuran.id_ukuran
-                                    JOIN jenis_kain ON barang_konveksi.id_jenis_kain = jenis_kain.id_jenis_kain
-                                    JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain= tipe_jenis_kain.id_tipe_jenis_kain
-                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    JOIN warna_kain ON barang_konveksi.id_warna_kain=warna_kain.id_warna_kain
+                                    JOIN jenis_kain ON jenis_kain.id_jenis_kain= warna_kain.id_jenis_kain
                                     WHERE tr_pesan.status <> 'lunas'
                                     ");
         return $query->result();
     }
     function get_view_konveksi($id){
-        $query = $this->db->query("SELECT tr_pesan.*, admin.*,pesan.*, tabel_pelanggan.*, barang_konveksi.*,jenis_kain.*,ukuran.*,tipe_jenis_kain.*,warna_kain.*
+        $query = $this->db->query("SELECT tr_pesan.*, admin.*,pesan.*, tabel_pelanggan.*, barang_konveksi.*,jenis_kain.*,ukuran.*,warna_kain.*
                                     FROM tr_pesan
                                     JOIN admin ON tr_pesan.id_admin= admin.id_admin
                                     JOIN pesan ON tr_pesan.id_pesan=pesan.id_pesan
@@ -239,13 +184,83 @@ public function upload(){
                                     JOIN barang_konveksi ON pesan.id_barang_konveksi=barang_konveksi.id_barang_konveksi
                                     JOIN ukuran ON barang_konveksi.id_ukuran=ukuran.id_ukuran
                                     JOIN jenis_kain ON barang_konveksi.id_jenis_kain = jenis_kain.id_jenis_kain
-                                    JOIN tipe_jenis_kain ON jenis_kain.id_tipe_jenis_kain= tipe_jenis_kain.id_tipe_jenis_kain
-                                    JOIN warna_kain ON tipe_jenis_kain.id_warna_kain = warna_kain.id_warna_kain
+                                    JOIN warna_kain ON jenis_kain.id_jenis_kain= warna_kain.id_jenis_kain
                                     WHERE tr_pesan.status <> 'lunas'
                                     AND tr_pesan.id_tr_pesan = $id
                                     ");
         return $query->result();
     }
 
+
+    function getKainList(){
+        $result = array();
+        $this->db->select('*');
+        $this->db->from('jenis_kain');
+        $this->db->order_by('nama_kain','ASC');
+        $array_keys_values = $this->db->get();
+        foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Kain-';
+            $result[$row->id_jenis_kain]= $row->nama_kain;
+        }
+        
+        return $result;
+    }
+
+    function getWarnaList(){
+        $id_jenis_kain = $this->input->post('id_jenis_kain');
+        $result = array();
+        $this->db->select('*');
+        $this->db->from('warna_kain');
+        $this->db->where('id_jenis_kain',$id_jenis_kain);
+        $this->db->order_by('warna_kain','ASC');
+        $array_keys_values = $this->db->get();
+        foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Warna Kain-';
+            $result[$row->id_warna_kain]= $row->warna_kain;
+        }
+        
+        return $result;
+    }
+
+public function getid_konveksi($id){
+     $this->db->where('id_barang_konveksi', $id);
+     return $this->db->get('barang_konveksi')->result();
+   }
+
+
+ public function getid($id){
+     $this->db->where('id_jenis_barang_distro', $id);
+     return $this->db->get('jenis_barang_distro')->result();
+   }
+
+ public function gambar($id)
+   {
+     $this->db->where('id_jenis_barang_distro', $id);
+     return $this->db->get('jenis_barang_distro')->row();
+   }
+ public function ubah($table,$id, $data) {
+     try{
+      $this->db->where('id_jenis_barang_distro', $id)->limit(1)->update($table, $data);
+      return true;
+     }catch(Exception $e){}
+ }
+
+ public function hapus($id){
+   $this->db->where('id_jenis_barang_distro', $id);
+   $this->db->delete('jenis_barang_distro');
+ }
+
+ public function ubah_konveksi($id, $data) {
+     try{
+      $this->db->where('id_barang_konveksi', $id)->limit(1)->update('barang_konveksi', $data);
+      return true;
+     }catch(Exception $e){}
+ }
+  public function hapus_konveksi($id){
+   $this->db->where('id_barang_konveksi', $id);
+   $this->db->delete('barang_konveksi');
+ }
 
 }

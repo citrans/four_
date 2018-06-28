@@ -4,11 +4,12 @@
     <tr>
         <th>No	</th>
 		<th>ID Barang</th>
-        <th>Nama Barang</th>
         <th>Jenis Barang</th>
+        <th>Nama Barang</th>
         <th>Harga</th>
         <th>Jumlah</th>
 		<th>ukuran</th>
+        <th>Gambar</th>
         <th class="span2">
             <a href="distro/tambah_barang" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">
                 <i class="icon-plus-sign icon-white"></i> Tambah Data
@@ -31,9 +32,10 @@
         <td><?php echo currency_format($row->harga_barang);?></td>
 		<td><?php echo $row->jumlah_barang; ?></td>
 		<td><?php echo $row->size; ?></td>
+        <?php  echo "<td><center><img src='".base_url("asset/images/".$row->gambar)."' width='100' height='100'></center></td>";?>
         <td>
             <a class="btn btn-mini" href="#modalEditBarang<?php echo $row->id_jenis_barang_distro?>" data-toggle="modal"><i class="icon-pencil"></i> Edit</a>
-            <a class="btn btn-mini" href="<?php echo site_url('distro/hapus_barang/'.$row->id_jenis_barang_distro);?>"
+            <a class="btn btn-mini" href="<?php echo site_url('distro/hapus/'.$row->id_jenis_barang_distro);?>"
                onclick="return confirm('Anda yakin?')"> <i class="icon-remove"></i> Hapus</a>
         </td>
     </tr>
@@ -56,7 +58,7 @@ if (isset($data_barang)){
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">Edit Data Barang</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo site_url('distro/edit_barang')?>">
+           <?=form_open_multipart('distro/proses_ubah/'.$row->id_jenis_barang_distro)?>
                 <div class="modal-body">
                     <div class="control-group">
                         <label class="control-label">Kode Barang</label>
@@ -79,7 +81,7 @@ if (isset($data_barang)){
                     <div class="control-group">
                         <label class="control-label" >Nama Barang</label>
                         <div class="controls">
-                            <input name="nm_barang" type="text" value="<?php echo $row->nama_jenis_barang_distro;?>" readonly>
+                            <input name="nm_barang" type="text" value="<?php echo $row->nama_jenis_barang_distro;?>" >
                         </div>
                     </div>
 
@@ -100,7 +102,14 @@ if (isset($data_barang)){
                      <div class="control-group">
                         <label class="control-label" >Jumlah Tambahan</label>
                         <div class="controls">
-                           <input type="varchar" name="stok_tambah" required="">
+                           <input type="varchar" name="stok_tambah" >
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" >Gambar</label>
+                        <div class="controls">
+                           <input type="file" name="userfile" >
                         </div>
                     </div>
 

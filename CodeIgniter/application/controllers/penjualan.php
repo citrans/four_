@@ -46,7 +46,7 @@ class Penjualan extends CI_Controller{
 
     function update_tr_jual(){
         $id['id_tr_beli'] = $this->input->post('id_tr');
-        $data=array(
+        $data=array( 
             'waktu_bayar'=> $this->input->post(''),
             'status'=>$this->input->post('status'),
         );
